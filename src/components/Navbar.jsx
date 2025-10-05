@@ -16,10 +16,12 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-3">
                         {
                             links.map((link, i) => <span key={i}>{link}</span>)
                         }
+                        <a className="btn btn-success text-white my-3">Sing In</a>
+                        <a className="btn btn-info text-white">Sing Up</a>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">Book Vibe</a>
@@ -31,7 +33,7 @@ const Navbar = () => {
                     }
                 </ul>
             </div>
-            <div className="navbar-end flex-col md:flex-row gap-2 md:gap-5">
+            <div className="navbar-end hidden md:flex md:flex-row gap-2 md:gap-5">
                 <a className="btn btn-success text-white">Sing In</a>
                 <a className="btn btn-info text-white">Sing Up</a>
             </div>

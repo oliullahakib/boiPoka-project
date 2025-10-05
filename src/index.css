@@ -2,6 +2,10 @@
  @plugin "daisyui" {
    themes: light --default
  }
+ /* *{
+
+  border:2px solid red
+ } */
  a.active{
   border: 1px solid green;
   color: green;
