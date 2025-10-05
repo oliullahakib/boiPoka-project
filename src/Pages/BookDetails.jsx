@@ -11,7 +11,11 @@ const BookDetails = () => {
     const { author, bookName, category, image, rating, tags, bookId, review,totalPages,yearOfPublishing,publisher } = singleBook
 
     const handleReadBooks =(id)=>{
-        addToLS(id)
+        addToLS(id,"readBooks","Read Books")
+        
+    }
+    const handleWishlist =(id)=>{
+        addToLS(id,"wishList","Wish List")
     }
     return (
         <div className="hero bg-base-200 min-h-screen ">
@@ -49,7 +53,7 @@ const BookDetails = () => {
                     </div>
                     <div>
                         <button onClick={()=>handleReadBooks(bookId)} className="btn ">Read</button>
-                        <button className="btn btn-info text-white ml-3">Wishlist</button>
+                        <button onClick={()=>handleWishlist(bookId)} className="btn btn-info text-white ml-3">Wishlist</button>
                     </div>
                 </div>
             </div>

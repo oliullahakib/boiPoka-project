@@ -2,10 +2,10 @@ import { MapPin, StickyNote, Users } from 'lucide-react';
 import React from 'react';
 
 const ListedBooksCard = ({book}) => {
-    const  { author, bookName, category, image, rating, tags, bookId,yearOfPublishing,publisher,totalPages }=book
+    const  { author, bookName, category, image, rating, tags,yearOfPublishing,publisher,totalPages }=book
     return (
         <div className='flex mt-5 gap-3 border border-gray-200 rounded-xl p-3'>
-            <figure className='bg-gray-200 p-5 rounded-xl'>
+            <figure className='bg-gray-200 p-5  rounded-xl flex items-center '>
                 <img className='w-20 ' src={image} alt={bookName} />
             </figure>
             <div className='space-y-3'>

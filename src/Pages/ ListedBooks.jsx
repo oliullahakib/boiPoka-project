@@ -6,11 +6,15 @@ import ListedBooksCard from '../components/ListedBooksCard';
 
 const ListedBooks = () => {
     const [readedBooks, setReadedBooks] = useState([])
+    const [wishList, setWishList] = useState([])
     const booksData = use(BooksContext)
     useEffect(() => {
-     const readBooksIdArry= getFromLs()
-     const myBooksList = booksData.filter( book=> readBooksIdArry.includes(book.bookId) )
-     setReadedBooks(myBooksList)
+        const readBooksIdArry = getFromLs("readBooks")
+        const myBooksList = booksData.filter(book => readBooksIdArry.includes(book.bookId))
+        setReadedBooks(myBooksList)
+        const wishListArry = getFromLs("wishList")
+        const myWishList = booksData.filter(book => wishListArry.includes(book.bookId))
+        setWishList(myWishList)
     }, [booksData])
     console.log(readedBooks)
     return (
@@ -25,12 +29,16 @@ const ListedBooks = () => {
                 <input type="radio" name="my_tabs_3" className="tab" aria-label="Read Books" defaultChecked />
                 <div className="tab-content bg-base-100 border-base-300 p-6">
                     {
-                        readedBooks.map(book=><ListedBooksCard key={book.bookId} book ={book}/>)
+                        readedBooks.map(book => <ListedBooksCard key={book.bookId} book={book} />)
                     }
                 </div>
 
-                <input type="radio" name="my_tabs_3" className="tab" aria-label="Wishlist Books"  />
-                <div className="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+                <input type="radio" name="my_tabs_3" className="tab" aria-label="Wishlist Books" />
+                <div className="tab-content bg-base-100 border-base-300 p-6">
+                    {
+                        wishList.map(book => <ListedBooksCard key={book.bookId} book={book} />)
+                    }
+                </div>
 
             </div>
         </div>

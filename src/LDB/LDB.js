@@ -1,5 +1,7 @@
-export const getFromLs=()=>{
-    const readBooksJson= localStorage.getItem("readBooks")
+import { toast } from "react-toastify"
+
+export const getFromLs=(key)=>{
+    const readBooksJson= localStorage.getItem(key)
     if(readBooksJson){
         const readBooksArry=JSON.parse(readBooksJson)
         return readBooksArry
@@ -7,13 +9,14 @@ export const getFromLs=()=>{
     return []
 }
 
- export const addToLS =(id)=>{
-    const readBooksArry = getFromLs()
+ export const addToLS =(id,key,sec)=>{
+    const readBooksArry = getFromLs(key)
     if(readBooksArry.includes(id)){
-        alert("This Book Alreay Readed")
-      
+        toast.error(`This Book Alreay Added to ${sec}`)
+      return
     }else{
         readBooksArry.push(id)
-        localStorage.setItem("readBooks",JSON.stringify(readBooksArry))
+        localStorage.setItem(key,JSON.stringify(readBooksArry))
+        toast.success(`Add To ${sec}`)
     }
 }
