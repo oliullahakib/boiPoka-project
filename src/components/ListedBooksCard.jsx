@@ -1,8 +1,10 @@
 import { MapPin, StickyNote, Users } from 'lucide-react';
 import React from 'react';
+import { useNavigate } from 'react-router';
 
 const ListedBooksCard = ({book}) => {
-    const  { author, bookName, category, image, rating, tags,yearOfPublishing,publisher,totalPages }=book
+    const navigate=useNavigate()
+    const  { author, bookName, category, image, rating, tags,yearOfPublishing,publisher,totalPages,bookId }=book
     return (
         <div className='flex mt-5 gap-3 border border-gray-200 rounded-xl p-3'>
             <figure className='bg-gray-200 p-5  rounded-xl flex items-center '>
@@ -26,8 +28,8 @@ const ListedBooksCard = ({book}) => {
                 </p>
                 <div className='flex gap-2 border-t-1 border-gray-200 pt-4 '>
                     <button className='btn bg-blue-200 text-blue-500 rounded-2xl'>Category: {category}</button>
-                    <button className='btn bg-amber-200 text-amber-500 rounded-2xl'>Category: {rating}</button>
-                    <button className='btn bg-green-600 text-white rounded-2xl'>View Details</button>
+                    <button className='btn bg-amber-200 text-amber-500 rounded-2xl'>Rating: {rating}</button>
+                    <button onClick={()=>navigate(`/details/${bookId}`)} className='btn bg-green-600 text-white rounded-2xl'>View Details</button>
                 </div>
             </div>
         </div>
