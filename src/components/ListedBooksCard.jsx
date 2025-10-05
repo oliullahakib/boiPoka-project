@@ -25,9 +25,9 @@ const ListedBooksCard = ({book}) => {
                     <span className='flex gap-2'> <StickyNote /> Page {totalPages}</span>
                 </p>
                 <div className='flex gap-2 border-t-1 border-gray-200 pt-4 '>
-                    <button className='btn bg-blue-200 text-blue-500 rounded-2xl'>Category {category}</button>
-                    <button className='btn bg-amber-200 text-amber-500 rounded-2xl'>Category {category}</button>
-                    <button className='btn bg-green-600 text-white rounded-2xl'>Category {category}</button>
+                    <button className='btn bg-blue-200 text-blue-500 rounded-2xl'>Category: {category}</button>
+                    <button className='btn bg-amber-200 text-amber-500 rounded-2xl'>Category: {rating}</button>
+                    <button className='btn bg-green-600 text-white rounded-2xl'>View Details</button>
                 </div>
             </div>
         </div>
