@@ -1,13 +1,18 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import { Outlet } from 'react-router';
+import { Outlet, useLoaderData } from 'react-router';
+import { BooksContext } from '../Context/BooksContext';
 
 const Root = () => {
+    const booksData = useLoaderData()
+
     return (
-        <div>
-            <Navbar/>
-            <Outlet/>
-        </div>
+        <BooksContext value={booksData}>
+            <div>
+                <Navbar />
+                <Outlet />
+            </div>
+        </BooksContext>
     );
 };
 

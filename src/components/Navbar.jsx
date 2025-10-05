@@ -17,7 +17,9 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        {links}
+                        {
+                            links.map((link, i) => <span key={i}>{link}</span>)
+                        }
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">Book Vibe</a>
@@ -25,7 +27,7 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal space-x-5 px-1">
                     {
-                     links
+                        links.map((link, i) => <span key={i}>{link}</span>)
                     }
                 </ul>
             </div>
