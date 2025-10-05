@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { useParams } from 'react-router';
 import { BooksContext } from '../Context/BooksContext';
+import { addToLS } from '../LDB/LDB';
 
 const BookDetails = () => {
     const booksData = use(BooksContext)
@@ -8,6 +9,10 @@ const BookDetails = () => {
     const idNum = Number(id)
     const singleBook = booksData.find(book => book.bookId === idNum)
     const { author, bookName, category, image, rating, tags, bookId, review,totalPages,yearOfPublishing,publisher } = singleBook
+
+    const handleReadBooks =(id)=>{
+        addToLS(id)
+    }
     return (
         <div className="hero bg-base-200 min-h-screen ">
             <div className="hero-content flex-col lg:flex-row">
@@ -43,7 +48,7 @@ const BookDetails = () => {
                         </div>
                     </div>
                     <div>
-                        <button className="btn ">Read</button>
+                        <button onClick={()=>handleReadBooks(bookId)} className="btn ">Read</button>
                         <button className="btn btn-info text-white ml-3">Wishlist</button>
                     </div>
                 </div>

@@ -6,7 +6,6 @@ const BookCard = ({ book }) => {
     const navigate = useNavigate()
     const handleBookCard = (id) => {
         navigate(`/details/${id}`)
-        alert("your book is added")
     }
     const { author, bookName, category, image, rating, tags, bookId } = book
     return (
