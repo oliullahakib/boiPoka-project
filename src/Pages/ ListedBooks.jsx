@@ -39,6 +39,7 @@ const ListedBooks = () => {
     }
     return (
         <div className='w-11/12 mx-auto'>
+             <title>Boi Poka - Listed Books</title>
             <div className='bg-gray-200 flex items-center justify-center py-8 text-3xl font-bold rounded-2xl'>
                 <h1>Books</h1>
             </div>
@@ -49,7 +50,7 @@ const ListedBooks = () => {
                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm cursor-pointer">
                     <li className={`${sort==="rating"?'bg-green-300 p-1':""}`} onClick={()=>handleSort("rating")}>Rating</li>
                     <li className={`${sort==="pages"?'bg-green-300 p-1':""}`} onClick={()=>handleSort("pages")}>Number of Pages</li>
-                    <li className={`${sort==="years"?'bg-green-300 p-1':""}`} onClick={()=>handleSort("years")}>Publisher Year</li>
+                    <li className={`${sort==="years"?'bg-green-300 p-1':""}`} onClick={()=>handleSort("years")}>Publishing Year</li>
                 </ul>
             </div>
             </div>
