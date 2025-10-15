@@ -2,16 +2,17 @@ import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
 import { AuthContext } from '../Context/AuthContex';
+import { UserCircle2Icon } from 'lucide-react';
 
 const SingUp = () => {
-    const {signUp}=use(AuthContext)
+    const {signUp,updateUser}=use(AuthContext)
     const [error, setError] = useState('')
     const [show, setShow] = useState(false)
     const handleSingUp = (e) => {
         e.preventDefault()
         // reset 
         setError('')
-
+        const photo = e.target.photo.value;
         const email = e.target.email.value;
         const name = e.target.name.value;
         const password = e.target.password.value;
@@ -35,9 +36,19 @@ const SingUp = () => {
         }
         console.log("singUP", email, name, password,term)
         signUp(email,password)
-        .then(res=>console.log(res))
+        .then(res=>{
+            console.log(res.user)
+            // update User
+            const userObj = {
+                displayName:name,
+                photoURL:photo
+            }
+            updateUser(res.user,userObj)
+            .then("update user sccessfully")
+            .catch(err=>console.log(err))
+        })
         .catch(err=>console.log(err))
-
+        e.target.reset()
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -50,6 +61,9 @@ const SingUp = () => {
                                 {/* Name */}
                                 <label className="label">Name</label>
                                 <input required name='name' type="text" className="input" placeholder=" Name" />
+                                {/* Photo URL */}
+                                <label className="label">Photo</label>
+                                <input  name='photo' type="text" className="input" placeholder="Photo URL" />
                                 {/* email */}
                                 <label className="label">Email</label>
                                 <input required name='email' type="email" className="input" placeholder="Email" />

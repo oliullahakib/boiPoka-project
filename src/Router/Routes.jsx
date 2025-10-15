@@ -6,6 +6,8 @@ import ListedBooks from "../Pages/ ListedBooks";
 import PagesToRead from "../Pages/PagesToRead";
 import SingIn from "../Pages/SingIn";
 import SingUp from "../Pages/SingUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Profile from "../Pages/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -20,7 +22,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:"/details/:id",
-                Component:BookDetails
+                element:<PrivateRoute><BookDetails/></PrivateRoute>
             },
             {
                 path:"/listedBooks",
@@ -31,12 +33,16 @@ export const router = createBrowserRouter([
                 Component:PagesToRead
             },
             {
-                path:"/singIn",
+                path:"/signIn",
                 Component:SingIn
             },
             {
-                path:"singUp",
+                path:"/signUp",
                 Component:SingUp
+            },
+            {
+                path:"/profile",
+                element:<PrivateRoute><Profile/></PrivateRoute>
             }
         ]
     }

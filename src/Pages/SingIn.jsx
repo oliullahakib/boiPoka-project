@@ -12,7 +12,7 @@ const SingIn = () => {
         const password = e.target.password.value;
         console.log("singIn", email, password)
         signIn(email,password)
-        .then(console.log("login successfully"))
+        .then(console.log("login successfully"),e.target.reset())
         .catch(err=>console.log(err))
 
     }
@@ -21,7 +21,7 @@ const SingIn = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
-                        <h1 className="text-5xl font-bold">Singin now!</h1>
+                        <h1 className="text-5xl font-bold">Sign In Now!</h1>
                         <form onSubmit={handleSingIn}>
                             <fieldset className="fieldset">
                                 <label className="label">Email</label>
@@ -35,7 +35,7 @@ const SingIn = () => {
                                     }} className='btn btn-xs absolute top-6 right-2'>{show ? <FaEyeSlash /> : <FaEye />}</button>
                                 </div>
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn btn-neutral mt-4">Sing in</button>
+                                <button className="btn btn-neutral mt-4">Sign in</button>
                                 <p>New on Our Website? Please <Link className='text-blue-400 hover:text-blue-700' to={"/singUp"}>Sing Up</Link> </p>
                             </fieldset>
                         </form>

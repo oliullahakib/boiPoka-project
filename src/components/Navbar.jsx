@@ -3,15 +3,17 @@ import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContex';
 
 const Navbar = () => {
-    const { user,logOut } = use(AuthContext)
-    const links = [
-        <NavLink to={'/'}>Home</NavLink>,
-        <NavLink to={'/listedBooks'}>Listed Books</NavLink>,
+    const { user, logOut } = use(AuthContext)
+    const links = <>
+        <NavLink to={'/'}>Home</NavLink>
+        <NavLink to={'/listedBooks'}>Listed Books</NavLink>
         <NavLink to={'/pages'}>Pages to Read</NavLink>
-    ]
-    const handleLogOut=()=>{
+        {user&& <NavLink to={"/profile"}>Profile</NavLink>}
+        </>
+
+    const handleLogOut = () => {
         logOut()
-        .then(console.log("logOut"))
+            .then(console.log("logOut"))
     }
     return (
         <div className="navbar bg-base-100  w-11/12 mx-auto">
@@ -24,7 +26,7 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-3">
                         {
-                            links.map((link, i) => <span key={i}>{link}</span>)
+                            links
                         }
                         <a className="btn btn-success text-white my-3">Sing In</a>
                         <a className="btn btn-info text-white">Sing Up</a>
@@ -35,15 +37,15 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal space-x-5 px-1">
                     {
-                        links.map((link, i) => <span key={i}>{link}</span>)
+                        links
                     }
                 </ul>
             </div>
             <div className="navbar-end hidden md:flex md:flex-row gap-2 md:gap-5">
                 {
                     user ? <button onClick={handleLogOut} className='btn btn-primary'>Log Out</button> : <>
-                        <Link to={"/singIn"} className="btn btn-success text-white">Sing In</Link>
-                        <Link to={"/singUp"} className="btn btn-info text-white">Sing Up</Link>
+                        <Link to={"/signIn"} className="btn btn-success text-white">Sign In</Link>
+                        <Link to={"/signUp"} className="btn btn-info text-white">Sign Up</Link>
                     </>
                 }
             </div>
