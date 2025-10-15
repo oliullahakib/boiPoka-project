@@ -4,10 +4,13 @@ import Home from "../Pages/Home";
 import BookDetails from "../Pages/BookDetails";
 import ListedBooks from "../Pages/ ListedBooks";
 import PagesToRead from "../Pages/PagesToRead";
+import SingIn from "../Pages/SingIn";
+import SingUp from "../Pages/SingUp";
 
 export const router = createBrowserRouter([
     {
         path:"/",
+        hydrateFallbackElement:<span className="loading loading-spinner loading-xl"></span>,
         Component:Root,
         loader:()=>fetch("/booksData.json"),
         children:[
@@ -26,6 +29,14 @@ export const router = createBrowserRouter([
             {
                 path:"/pages",
                 Component:PagesToRead
+            },
+            {
+                path:"/singIn",
+                Component:SingIn
+            },
+            {
+                path:"singUp",
+                Component:SingUp
             }
         ]
     }
