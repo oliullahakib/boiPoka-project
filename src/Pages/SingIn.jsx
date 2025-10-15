@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
+import { AuthContext } from '../Context/AuthContex';
 
 const SingIn = () => {
+    const {signIn}=use(AuthContext)
      const [show, setShow] = useState(false)
     const handleSingIn = (e) => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log("singIn", email, password)
+        signIn(email,password)
+        .then(console.log("login successfully"))
+        .catch(err=>console.log(err))
 
     }
     return (

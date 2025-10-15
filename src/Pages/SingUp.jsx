@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
+import { AuthContext } from '../Context/AuthContex';
 
 const SingUp = () => {
+    const {signUp}=use(AuthContext)
     const [error, setError] = useState('')
     const [show, setShow] = useState(false)
     const handleSingUp = (e) => {
@@ -32,6 +34,10 @@ const SingUp = () => {
             return
         }
         console.log("singUP", email, name, password,term)
+        signUp(email,password)
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err))
+
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
