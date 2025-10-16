@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Context/AuthContex';
+import { toast } from 'react-toastify';
 
 const SingIn = () => {
     const location = useLocation();
@@ -15,14 +16,11 @@ const SingIn = () => {
         console.log("singIn", email, password)
         signIn(email,password)
         .then( 
-            console.log("login successfully"),
+            toast.success("Login successfully"),
             e.target.reset(),
-            
-            navigate(location.state)
-        
-            
+            navigate(location.state)   
         )
-        .catch(err=>console.log(err))
+        .catch(err=>toast.error(err))
 
     }
     return (

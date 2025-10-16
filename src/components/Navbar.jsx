@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContex';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const { user, logOut } = use(AuthContext)
@@ -13,7 +14,7 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then(console.log("logOut"))
+            .then(toast.success("Log Out Successfuly"))
     }
     return (
         <div className="navbar bg-base-100  w-11/12 mx-auto">

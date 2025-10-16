@@ -9,17 +9,17 @@ export const AuthProvider = ({ children }) => {
 
     // SingUp
     const signUp=(email,password)=>{
-        setLoading(true)
-      return  createUserWithEmailAndPassword(auth,email,password)
+        // setLoading(true)
+      return createUserWithEmailAndPassword(auth,email,password)
     }
     // SingIn 
     const signIn = (email,password)=>{
-        setLoading(true)
+        // setLoading(true)
        return signInWithEmailAndPassword(auth,email,password)
     }
     // SingOut 
     const logOut = ()=>{
-        setLoading(true)
+        // setLoading(true)
       return signOut(auth)
     }
     // update profile 
@@ -36,5 +36,6 @@ export const AuthProvider = ({ children }) => {
     const value = {user,signIn,signOut,signUp,logOut,loading,updateUser}
     return <AuthContext value={value}>
         {children}
+        
     </AuthContext>
 }

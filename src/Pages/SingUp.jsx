@@ -2,10 +2,11 @@ import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
 import { AuthContext } from '../Context/AuthContex';
-import { UserCircle2Icon } from 'lucide-react';
 import { sendEmailVerification } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const SingUp = () => {
+    const [errMassage, setErrMassage] = useState('')
     const { signUp, updateUser } = use(AuthContext)
     const [error, setError] = useState('')
     const [show, setShow] = useState(false)
@@ -18,7 +19,7 @@ const SingUp = () => {
         const name = e.target.name.value;
         const password = e.target.password.value;
         const term = e.target.term.checked
-
+        if(!term) return toast.warning("Please Accept Our Term & Condition")
         // password validation 
         const lengthCheck = /^.{6,}$/
         const caseCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
@@ -35,29 +36,29 @@ const SingUp = () => {
             setError("Must contain at least one special character.")
             return
         }
-        console.log("singUP", email, name, password, term)
         signUp(email, password)
             .then(res => {
-                console.log(res.user)
                 // update User
                 const userObj = {
                     displayName: name,
                     photoURL: photo
                 }
                 updateUser(res.user, userObj)
-                    .then( 
-                        console.log("update user sccessfully")
-                    )
-                    .catch(err=>console.log(err))
+                    // .then( 
+                    //     toast.success("Update user sccessfully")
+                    // )
+                    .catch(err => setErrMassage(err))
 
                 // email verification 
                 sendEmailVerification(res.user)
-                    .then(alert("Check Your Email and verify account"))
+                    .then(toast.info("Check Your Email and verify account"))
+                    .catch(err => setErrMassage(err))
 
-                    .catch(err => console.log(err))
+                toast.success("Creat Account Successfuly")
             })
-            .catch(err => console.log(err))
-        e.target.reset()
+            .catch(err => setErrMassage(err.message))
+        // e.target.reset()
+        toast.error(errMassage)
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
