@@ -43,7 +43,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end hidden md:flex md:flex-row gap-2 md:gap-5">
                 {
-                    user ? <button onClick={handleLogOut} className='btn btn-primary'>Log Out</button> : <>
+                    user ? <button onClick={handleLogOut} className='btn btn-warning'>Log Out</button> : <>
                         <Link to={"/signIn"} className="btn btn-success text-white">Sign In</Link>
                         <Link to={"/signUp"} className="btn btn-info text-white">Sign Up</Link>
                     </>

@@ -18,10 +18,13 @@ const Profile = () => {
                     }
                 </figure>
                 <div className="card-body items-center text-center">
-                    <h2 className="card-title">{displayName}</h2>
+                   <div className='flex gap-3'>
+                     <h2 className="card-title">{displayName}</h2>
+                     <div className={`badge ${user.emailVerified?"badge-primary":"bg-gray-300"}`}>{user.emailVerified?"Verified":"Un-verified"}</div>
+                   </div>
                     <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
                     <div className="card-actions">
-                        <button className="btn btn-primary">Update Profile</button>
+                        <button className="btn btn-success">Update Profile</button>
                     </div>
                 </div>
             </div>

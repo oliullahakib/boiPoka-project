@@ -3,9 +3,10 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
 import { AuthContext } from '../Context/AuthContex';
 import { UserCircle2Icon } from 'lucide-react';
+import { sendEmailVerification } from 'firebase/auth';
 
 const SingUp = () => {
-    const {signUp,updateUser}=use(AuthContext)
+    const { signUp, updateUser } = use(AuthContext)
     const [error, setError] = useState('')
     const [show, setShow] = useState(false)
     const handleSingUp = (e) => {
@@ -17,7 +18,7 @@ const SingUp = () => {
         const name = e.target.name.value;
         const password = e.target.password.value;
         const term = e.target.term.checked
-        
+
         // password validation 
         const lengthCheck = /^.{6,}$/
         const caseCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
@@ -34,20 +35,28 @@ const SingUp = () => {
             setError("Must contain at least one special character.")
             return
         }
-        console.log("singUP", email, name, password,term)
-        signUp(email,password)
-        .then(res=>{
-            console.log(res.user)
-            // update User
-            const userObj = {
-                displayName:name,
-                photoURL:photo
-            }
-            updateUser(res.user,userObj)
-            .then("update user sccessfully")
-            .catch(err=>console.log(err))
-        })
-        .catch(err=>console.log(err))
+        console.log("singUP", email, name, password, term)
+        signUp(email, password)
+            .then(res => {
+                console.log(res.user)
+                // update User
+                const userObj = {
+                    displayName: name,
+                    photoURL: photo
+                }
+                updateUser(res.user, userObj)
+                    .then( 
+                        console.log("update user sccessfully")
+                    )
+                    .catch(err=>console.log(err))
+
+                // email verification 
+                sendEmailVerification(res.user)
+                    .then(alert("Check Your Email and verify account"))
+
+                    .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
         e.target.reset()
     }
     return (
@@ -63,7 +72,7 @@ const SingUp = () => {
                                 <input required name='name' type="text" className="input" placeholder=" Name" />
                                 {/* Photo URL */}
                                 <label className="label">Photo</label>
-                                <input  name='photo' type="text" className="input" placeholder="Photo URL" />
+                                <input name='photo' type="text" className="input" placeholder="Photo URL" />
                                 {/* email */}
                                 <label className="label">Email</label>
                                 <input required name='email' type="email" className="input" placeholder="Email" />
@@ -84,7 +93,7 @@ const SingUp = () => {
                                 <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
                                     <legend className="fieldset-legend">Terms & Conditions</legend>
                                     <label className="label">
-                                        <input name='term' type="checkbox"  className="checkbox" />
+                                        <input name='term' type="checkbox" className="checkbox" />
                                         Check me
                                     </label>
                                 </fieldset>
