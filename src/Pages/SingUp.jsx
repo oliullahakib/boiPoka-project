@@ -56,9 +56,9 @@ const SingUp = () => {
 
                 toast.success("Creat Account Successfuly")
             })
-            .catch(err => setErrMassage(err.message))
-        // e.target.reset()
-        toast.error(errMassage)
+            .catch(err => {setErrMassage(err.message),toast.error(errMassage)})
+        e.target.reset()
+        
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
