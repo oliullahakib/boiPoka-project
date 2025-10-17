@@ -3,7 +3,6 @@ import { AuthContext } from '../Context/AuthContex';
 
 const Profile = () => {
     const { user } = use(AuthContext)
-    console.log(user)
     const{displayName,photoURL}=user
     return (
         <div className='flex justify-center items-center'>

@@ -13,7 +13,6 @@ const SingIn = () => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log("singIn", email, password)
         signIn(email, password)
             .then(
                 toast.success("Login Successfully"),
@@ -33,7 +32,6 @@ const SingIn = () => {
             toast.success("Login Successfully")
         )
         .catch(err=>toast.error(err.message))
-          console.log("goole sign in")
     }
     return (
         <div className="hero bg-base-200 min-h-screen">

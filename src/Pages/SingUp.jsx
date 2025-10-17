@@ -72,7 +72,7 @@ const SingUp = () => {
                     toast.error( 'Email/Password sign-up is currently disabled.');
                 }
             })
-        // e.target.reset()
+        e.target.reset()
 
     }
     return (
@@ -115,7 +115,7 @@ const SingUp = () => {
                                 </fieldset>
 
                                 <button className="btn btn-neutral mt-4">Sing Up</button>
-                                <p>Already Have Account? Please <Link className='text-blue-400 hover:text-blue-700' to={"/singIn"}>Sing In</Link> </p>
+                                <p>Already Have Account? Please <Link className='text-blue-400 hover:text-blue-700' to={"/signIn"}>Sing In</Link> </p>
                             </fieldset>
                         </form>
                     </div>
