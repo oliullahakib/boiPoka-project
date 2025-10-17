@@ -50,7 +50,7 @@ const SingUp = () => {
 
                 // email verification 
                 sendEmailVerification(res.user)
-                    .then(toast.info("Check Your Email and verify account"))
+                    .then(()=>toast.info("Check Your Email and verify account"))
                     .catch(err => toast.error(err.message))
 
                 toast.success("Creat Account Successfuly")

@@ -14,10 +14,11 @@ const SingIn = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         signIn(email, password)
-            .then(
-                toast.success("Login Successfully"),
-                e.target.reset(),
+            .then((res)=>{
+                toast.success(`${res?.user?.displayName||""} Login Successfully`);
+                e.target.reset();
                 navigate(location.state)
+            }
             )
             .catch(err =>{ 
                 toast.error(err)
@@ -26,10 +27,9 @@ const SingIn = () => {
     }
     const handleGoogleSignIn =(e)=>{
         e.preventDefault()
-      
         googleSignIn()
-        .then(
-            toast.success("Login Successfully")
+        .then( res =>toast.success(`${res?.user?.displayName||""} Login Successfully`)
+            
         )
         .catch(err=>toast.error(err.message))
     }

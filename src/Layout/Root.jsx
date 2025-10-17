@@ -13,7 +13,9 @@ const Root = () => {
             <div>
                 <Navbar />
                 <Outlet />
-            <ToastContainer/>
+            <ToastContainer 
+            position='top-center'
+            />
             </div>
         </BooksContext>
     );
