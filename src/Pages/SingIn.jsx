@@ -28,9 +28,11 @@ const SingIn = () => {
     const handleGoogleSignIn =(e)=>{
         e.preventDefault()
         googleSignIn()
-        .then( res =>toast.success(`${res?.user?.displayName||""} Login Successfully`)
-            
-        )
+        .then( res =>{
+            toast.success(`${res?.user?.displayName||""} Login Successfully`);
+            navigate(location.state);
+        })   
+        
         .catch(err=>toast.error(err.message))
     }
     return (
