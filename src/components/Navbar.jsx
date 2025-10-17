@@ -9,8 +9,8 @@ const Navbar = () => {
         <NavLink to={'/'}>Home</NavLink>
         <NavLink to={'/listedBooks'}>Listed Books</NavLink>
         <NavLink to={'/pages'}>Pages to Read</NavLink>
-        {user&& <NavLink to={"/profile"}>Profile</NavLink>}
-        </>
+        {user && <NavLink to={"/profile"}>Profile</NavLink>}
+    </>
 
     const handleLogOut = () => {
         logOut()
@@ -29,8 +29,12 @@ const Navbar = () => {
                         {
                             links
                         }
-                        <a className="btn btn-success text-white my-3">Sing In</a>
-                        <a className="btn btn-info text-white">Sing Up</a>
+                        {
+                            user ? <button onClick={handleLogOut} className='btn btn-warning'>Log Out</button> : <>
+                                <Link to={"/signIn"} className="btn btn-success text-white">Sign In</Link>
+                                <Link to={"/signUp"} className="btn btn-info text-white">Sign Up</Link>
+                            </>
+                        }
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">Book Vibe</a>
