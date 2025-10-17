@@ -6,7 +6,6 @@ import { sendEmailVerification } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const SingUp = () => {
-    const [errMassage, setErrMassage] = useState('')
     const { signUp, updateUser } = use(AuthContext)
     const [error, setError] = useState('')
     const [show, setShow] = useState(false)
@@ -19,7 +18,7 @@ const SingUp = () => {
         const name = e.target.name.value;
         const password = e.target.password.value;
         const term = e.target.term.checked
-        if(!term) return toast.warning("Please Accept Our Term & Condition")
+        if (!term) return toast.warning("Please Accept Our Term & Condition")
         // password validation 
         const lengthCheck = /^.{6,}$/
         const caseCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
@@ -47,18 +46,34 @@ const SingUp = () => {
                     // .then( 
                     //     toast.success("Update user sccessfully")
                     // )
-                    .catch(err => setErrMassage(err))
+                    .catch(err => toast.error(err.message))
 
                 // email verification 
                 sendEmailVerification(res.user)
                     .then(toast.info("Check Your Email and verify account"))
-                    .catch(err => setErrMassage(err))
+                    .catch(err => toast.error(err.message))
 
                 toast.success("Creat Account Successfuly")
             })
-            .catch(err => {setErrMassage(err.message),toast.error(errMassage)})
-        e.target.reset()
-        
+            .catch(errorCode => {
+                if (errorCode.code === 'auth/email-already-in-use') {
+                    toast.error( 'This email is already registered. Please log in instead.');
+                }
+                else if (errorCode.code === 'auth/invalid-email') {
+                    toast.error( 'The email address is not valid.');
+                }
+                else if (errorCode.code === 'auth/weak-password') {
+                    toast.error( 'The password is too weak. It must be at least 6 characters.');
+                }
+                else if (errorCode.code === 'auth/network-request-failed') {
+                    toast.error( 'A network error occurred. Please check your connection.');
+                }
+                else if (errorCode.code === 'auth/operation-not-allowed') {
+                    toast.error( 'Email/Password sign-up is currently disabled.');
+                }
+            })
+        // e.target.reset()
+
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
